@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiat Luxs · Tienda Masónica</title>
+<style>
+  body { margin:0; font-family:"Georgia", serif; background-color:#f7f6f4; color:#2b2b2b; }
+  header { background: linear-gradient(135deg,#4b1f6f,#6a2ca0); color:#fff; padding: 60px 20px; text-align:center; }
+  header h1 { font-size:3rem; margin-bottom:10px; letter-spacing:2px; }
+  header p { font-size:1.2rem; max-width:700px; margin:0 auto; }
+
+  section { padding:40px 20px; max-width:1200px; margin:auto; }
+  section h2 { text-align:center; font-size:2.2rem; margin-bottom:20px; color:#4b1f6f; }
+  section p { font-size:1.05rem; line-height:1.8; text-align:center; max-width:850px; margin:0 auto 20px auto; }
+
+  .values { display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:30px; margin-top:40px; }
+  .card { background:#fff; border-radius:12px; padding:30px; box-shadow:0 10px 30px rgba(0,0,0,0.08); text-align:center; }
+  .card h3 { color:#6a2ca0; margin-bottom:15px; }
+
+  /* Barra de búsqueda */
+  #busqueda { display:block; margin:0 auto 30px auto; padding:10px 15px; width:80%; max-width:500px; font-size:1rem; border:2px solid #6a2ca0; border-radius:8px; }
+
+  /* Botones de categoría */
+  .categorias { text-align:center; margin-bottom:30px; }
+  .categorias button { margin: 0 5px 10px 5px; padding:8px 15px; border:2px solid #6a2ca0; background:#fff; color:#6a2ca0; border-radius:8px; cursor:pointer; font-weight:bold; transition: background 0.2s, color 0.2s; }
+  .categorias button.active, .categorias button:hover { background:#6a2ca0; color:#fff; }
+
+  /* Catálogo */
+  .catalogo { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:25px; }
+  .producto { background:#fff; border-radius:12px; padding:20px; box-shadow:0 8px 25px rgba(0,0,0,0.08); text-align:center; transition: transform 0.2s, box-shadow 0.2s; }
+  .producto:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+  .producto img { width:100%; height:auto; border-radius:8px; }
+  .producto h3 { color:#4b1f6f; margin:15px 0 10px 0; }
+  .producto p { font-size:0.95rem; }
+  .producto button { margin-top:10px; padding:10px 18px; background:#6a2ca0; color:#fff; border:none; border-radius:6px; cursor:pointer; transition: background 0.2s, transform 0.2s; }
+  .producto button:hover { background:#4b1f6f; transform:scale(1.05); }
+
+  .boton-agregado { animation: rebote 0.5s ease; }
+  @keyframes rebote {0%{transform:scale(1);}30%{transform:scale(1.2);}50%{transform:scale(0.95);}70%{transform:scale(1.05);}100%{transform:scale(1);}}
+
+  /* Carrito */
+  #carrito { position:fixed; top:80px; right:20px; background:#fff; border:2px solid #6a2ca0; padding:20px; border-radius:12px; width:350px; max-height:450px; overflow-y:auto; display:none; z-index:1001; box-shadow:0 10px 30px rgba(0,0,0,0.2); }
+  #carrito h3 { margin-top:0; color:#6a2ca0; }
+  #lista-carrito li { display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #ddd; }
+  #lista-carrito li button { background:red; color:white; border:none; border-radius:4px; cursor:pointer; padding:2px 6px; }
+  #total-carrito { font-weight:bold; margin-top:10px; text-align:right; }
+  #cerrar-carrito { margin-top:10px; background:#6a2ca0; color:#fff; border:none; border-radius:5px; width:100%; padding:8px; cursor:pointer; font-size:16px; }
+
+  #btn-carrito { position:fixed; top:20px; right:20px; background:#6a2ca0; color:#fff; border:none; border-radius:50%; width:60px; height:60px; font-size:28px; cursor:pointer; z-index:1000; box-shadow:0 5px 15px rgba(0,0,0,0.3); }
+  .carrito-animado { animation: parpadeo 0.5s ease; }
+  @keyframes parpadeo {0%{transform:scale(1);}25%{transform:scale(1.1);}50%{transform:scale(0.95);}75%{transform:scale(1.05);}100%{transform:scale(1);}}
+
+  #whatsapp { position:fixed; bottom:20px; right:100px; z-index:1000; background-color:#25D366; border-radius:50%; width:60px; height:60px; display:flex; justify-content:center; align-items:center; box-shadow:0 2px 5px rgba(0,0,0,0.3); cursor:pointer; transition: transform 0.2s; }
+  #whatsapp:hover { transform: scale(1.1); }
+  #whatsapp img { width:35px; height:35px; }
+
+  footer { background-color:#2b2b2b; color:#fff; text-align:center; padding:30px 20px; font-size:0.9rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>FIAT LUXS</h1>
+  <p>Tienda Masónica · Simbolismo fraternal hecho materia</p>
+</header>
+
+<!-- Secciones de texto originales -->
+<section>
+  <h2>Quiénes somos</h2>
+  <p>
+    <strong>Fiat Luxs</strong> es una tienda masónica dedicada a la creación y provisión de <strong>productos de calidad</strong>,
+    desarrollados con profundo respeto por el <strong>simbolismo masónico</strong> y la tradición fraternal.
+  </p>
+  <p>
+    Trabajamos con <strong>materias primas seleccionadas</strong> que garantizan durabilidad, precisión y excelencia.
+    Cada pieza es concebida respetando el simbolismo propio de <strong>cada cuerpo masónico</strong>,
+    honrando su uso ritual y su significado.
+  </p>
+</section>
+
+<section>
+  <h2>Nuestros valores</h2>
+  <div class="values">
+    <div class="card"><h3>Simbolismo</h3><p>Respetamos profundamente el simbolismo de cada grado, función y cuerpo masónico.</p></div>
+    <div class="card"><h3>Fraternidad</h3><p>Trabajamos desde y para la fraternidad, al servicio de los Hermanos y las Logias.</p></div>
+    <div class="card"><h3>Calidad</h3><p>Utilizamos materias primas que garantizan excelencia, durabilidad y noble terminación.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>A quiénes acompañamos</h2>
+  <p>
+    Nuestra experiencia está disponible para <strong>Hermanos, Logias, Grandes Logias, Grandes Orientes</strong>
+    y <strong>diferentes cuerpos masónicos</strong>, ofreciendo asesoramiento personalizado
+    y soluciones acordes a cada necesidad.
+  </p>
+</section>
+
+<!-- Catálogo con buscador y categorías -->
+<section>
+  <h2>Nuestros productos</h2>
+
+  <input type="text" id="busqueda" placeholder="Buscar productos...">
+
+  <div class="categorias">
+    <button class="categoria-btn active" data-categoria="todos">Todos</button>
+    <button class="categoria-btn" data-categoria="mandiles">Mandiles</button>
+    <button class="categoria-btn" data-categoria="joyas">Joyas</button>
+    <button class="categoria-btn" data-categoria="libros">Libros</button>
+  </div>
+
+  <div class="catalogo">
+    <!-- Ejemplos de productos -->
+    <div class="producto" data-categoria="mandiles"><img src="mandil1.jpg" alt=""><h3>Mandil Ritual</h3><p>Mandil de alta calidad</p><p>Precio: $100</p><button class="agregar-carrito" data-nombre="Mandil Ritual" data-precio="100">Agregar</button></div>
+    <div class="producto" data-categoria="joyas"><img src="joya1.jpg" alt=""><h3>Anillo Masónico</h3><p>Acero inoxidable</p><p>Precio: $200</p><button class="agregar-carrito" data-nombre="Anillo Masónico" data-precio="200">Agregar</button></div>
+    <div class="producto" data-categoria="libros"><img src="libro1.jpg" alt=""><h3>Simbolismo Masónico</h3><p>Libro de rituales</p><p>Precio: $120</p><button class="agregar-carrito" data-nombre="Simbolismo Masónico" data-precio="120">Agregar</button></div>
+  </div>
+</section>
+
+<footer>
+  <p>© Fiat Luxs · Tienda Masónica</p>
+</footer>
+
+<!-- Carrito -->
+<div id="carrito">
+  <h3>Carrito de compras</h3>
+  <ul id="lista-carrito"></ul>
+  <p id="total-carrito"><strong>Total: $0</strong></p>
+  <button id="cerrar-carrito">Cerrar</button>
+</div>
+
+<button id="btn-carrito">🛒</button>
+
+<a id="whatsapp" href="https://wa.me/5491112345678" target="_blank">
+  <img src="whatsapp-icon.png" alt="WhatsApp">
+</a>
+
+<script>
+  // Carrito
+  const carrito = document.getElementById('carrito');
+  const btnCarrito = document.getElementById('btn-carrito');
+  const listaCarrito = document.getElementById('lista-carrito');
+  const totalCarrito = document.getElementById('total-carrito');
+  const cerrarCarrito = document.getElementById('cerrar-carrito');
+  let productosEnCarrito = [];
+
+  btnCarrito.addEventListener('click', ()=>{ carrito.style.display='block'; });
+  cerrarCarrito.addEventListener('click', ()=>{ carrito.style.display='none'; });
+
+  document.querySelectorAll('.agregar-carrito').forEach(boton=>{
+    boton.addEventListener('click', ()=>{
+      const nombre = boton.dataset.nombre;
+      const precio = parseFloat(boton.dataset.precio);
+      productosEnCarrito.push({nombre, precio});
+      actualizarCarrito();
+
+      boton.classList.add('boton-agregado');
+      setTimeout(()=>boton.classList.remove('boton-agregado'),500);
+      btnCarrito.classList.add('carrito-animado');
+      setTimeout(()=>btnCarrito.classList.remove('carrito-animado'),500);
+    });
+  });
+
+  function actualizarCarrito(){
+    listaCarrito.innerHTML='';
+    let total=0;
+    productosEnCarrito.forEach((prod,index)=>{
+      const li=document.createElement('li');
+      li.textContent=`${prod.nombre} - $${prod.precio}`;
+      const btn=document.createElement('button');
+      btn.textContent='X';
+      btn.addEventListener('click',()=>{ productosEnCarrito.splice(index,1); actualizarCarrito(); });
+      li.appendChild(btn);
+      listaCarrito.appendChild(li);
+      total+=prod.precio;
+    });
+    totalCarrito.innerHTML=`<strong>Total: $${total}</strong>`;
+  }
+
+  // Filtro por categoría
+  const categoriaBtns = document.querySelectorAll('.categoria-btn');
+  const productos = document.querySelectorAll('.producto');
+
+  categoriaBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      categoriaBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.categoria;
+      productos.forEach(prod=>{
+        prod.style.display = (cat==='todos' || prod.dataset.categoria===cat) ? 'block':'none';
+      });
+      document.getElementById('busqueda').value='';
+    });
+  });
+
+  // Buscador
+  document.getElementById('busqueda').addEventListener('input', e=>{
+    const texto = e.target.value.toLowerCase();
+    productos.forEach(prod=>{
+      const nombre = prod.querySelector('h3').textContent.toLowerCase();
+      const desc = prod.querySelector('p').textContent.toLowerCase();
+      prod.style.display = (nombre.includes(texto)||desc.includes(texto)) ? 'block':'none';
+    });
+    categoriaBtns.forEach(b=>b.classList.remove('active'));
+    categoriaBtns[0].classList.add('active'); // "Todos"
+  });
+</script>
+
+</body>
+</html>
